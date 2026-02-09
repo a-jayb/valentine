@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? 💖</title>
+
+  <style>
+    :root {
+      --pink: #ff5c8a;
+      --light-pink: #ffe6ef;
+      --text-dark: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--text-dark);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: var(--pink);
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin: 0.75rem 0;
+    }
+
+    img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      border-radius: 14px;
+      margin: 1rem auto;
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .yes {
+      background-color: var(--pink);
+      color: white;
+    }
+
+    .no {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .details {
+      text-align: left;
+      margin-top: 1.5rem;
+      background: var(--light-pink);
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+    }
+
+    .details strong {
+      color: var(--pink);
+    }
+
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <section class="card" id="card">
+      <h1 id="question">hi gwen, will you be my valentine? 😸💘</h1>
+
+      <img
+        id="catImage"
+        src="https://media.tenor.com/xxPgBuwmddQAAAAi/cat.gif"
+        alt="Cute cat"
+      />
+
+      <div class="buttons" id="buttons">
+        <button class="yes" onclick="sayYes()">yes 💖</button>
+        <button class="no" id="noBtn" onclick="sayNo()">no 😿</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let noCount = 0;
+
+    const states = [
+    {
+        question: "hi gwen, will you be my valentine? 😸💘",
+        yes: "yes 💖",
+        no: "no 😿"
+    },
+    {
+        question: "are you sure? 🥺",
+        yes: "okii 🙂‍↕️",
+        no: "ayaw 😆"
+    },
+    {
+        question: "ihhhh 😿",
+        yes: "ok po 🥺",
+        no: "lah 😸"
+    },
+    {
+        question: "payag na raw si ginger",
+        yes: "fine.. 😏",
+        no: "payag ba 'ko? 😼"
+    },
+    {
+        question: "",
+        yes: "oo naa 😭",
+        no: "nanakot pa nga🧍‍♀️"
+    },
+    {
+        question: "pwease 🥲🙏",
+        yes: "hays, oo na beh 🤧"
+    }
+    ];
+
+    const sadCats = [
+      "https://media1.tenor.com/m/sQf0cT8G5soAAAAC/cat.gif",
+      "https://media1.tenor.com/m/7R-Aqnts07EAAAAC/sad-cat.gif",
+      "images/ginger.jpg",
+      "images/whis.jpg",
+      "https://media1.tenor.com/m/Z6q1LR6vzJgAAAAC/nct-ncr-dream.gif"
+    ];
+
+    function sayNo() {
+      noCount++;
+
+      const img = document.getElementById("catImage");
+      const question = document.getElementById("question");
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.querySelector(".yes");
+
+      const stateIndex = Math.min(noCount, states.length - 1);
+      const state = states[stateIndex];
+
+      question.textContent = state.question;
+      yesBtn.textContent = state.yes;
+
+      if (noBtn) {
+        noBtn.textContent = state.no;
+      }
+
+      if (noCount <= sadCats.length) {
+        img.src = sadCats[noCount - 1];
+      }
+
+      if (noCount >= 5 && noBtn) {
+        noBtn.remove();
+      }
+    }
+
+    function sayYes() {
+      const card = document.getElementById("card");
+
+      card.innerHTML = `
+        <h1>YAY!!! 💖🐱</h1>
+
+        <img
+          src="https://media1.tenor.com/m/lfDATg4Bhc0AAAAC/happy-cat.gif"
+          alt="Happy cat"
+        />
+
+        <p style="margin-top: 1.5rem;">happy valentine’s day 💕 see you 😁</p>
+
+        <div class="details">
+          <p>📍 <strong>place:</strong> the podium</p>
+          <p>⏰ <strong>time:</strong> feb 14, 1:00pm</p>
+          <p>👗 <strong>dress code:</strong> help me decide :></p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
